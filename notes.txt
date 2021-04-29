@@ -1,0 +1,44 @@
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import React, { useState,useMemo  } from 'react';
+import { Text, TextInput, View, StyleSheet, styles,TouchableOpacity,Button,Alert,Keyboard,TouchableWithoutFeedback, ScrollView } from 'react-native';
+
+export default function check() {
+    
+
+const [genderIndex, setGenderIndex] = useState(0);   
+const genderList = ["Male", "Female", "Other"];
+
+const genderChangeHandler = 
+(index) => {
+  // console.log("index \t", index);
+  setGenderIndex((preIndex) => index);
+}
+
+return(
+ <View style={{ flexDirection: "row" }}>
+                    {genderList.map((data, index) => (
+                      <TouchableOpacity
+                        key={data}
+                        style={{
+                          flexDirection: "row",
+                          margin: 10,
+                          flex: 3,
+                          justifyContent: "space-evenly",
+                        }}
+                        onPress={genderChangeHandler.bind(this, index)}
+                      >
+                        <MaterialIcons
+                          name={
+                            index === genderIndex
+                              ? "radio-button-checked"
+                              : "radio-button-unchecked"
+                          }
+                          size={18}
+                          color='#ccc'
+                        />
+                        <Text >{data}</Text>
+                      </TouchableOpacity>
+                    ))}
+</View>
+);
+}
